@@ -1,7 +1,7 @@
 module.exports = app =>{
-    const Tasks = app.models.tasks;
+    const Tasks = app.db.models.tasks;
     app.get("/tasks", (req, res) => {
-        Tasks.findAll({}, (tasks) => {
+        Tasks.findAll({}).then(tasks => {
            res.json({Tarefas: tasks}); 
         });
     });
