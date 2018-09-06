@@ -2,19 +2,19 @@
 module.exports = (sequelize, DataType) =>{
     const Tasks = sequelize.define("Tasks", {
         id: {
-            type: sequelize.INTEGER,
+            type: DataType.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         title: {
-            type:sequelize.STRING,
+            type:DataType.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true
             }
         },
         done: {
-            type: sequelize.BOOLEAN, 
+            type: DataType.BOOLEAN, 
             allowNull: false,
             defaultValue: false
         }
