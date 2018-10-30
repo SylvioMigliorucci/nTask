@@ -1,4 +1,5 @@
 import jwt from "jwt-simple";
+import bcrypt from "bcrypt";
 
 module.exports = app => {
     const cfg = app.libs.config;
@@ -9,14 +10,23 @@ module.exports = app => {
             const password = req.body.password;
             Users.findOne({where: {email: email}})
                 .then(user => {
-                    if (Users.isPassword(user.password, password)){
-                        const payload = { id: user.id};
+                    if(bcrypt.compareSync(password,user.password)){
+                        const payload = {user: user.id};
                         res.json({
                             token: jwt.encode(payload, cfg.jwtSecret)
                         });
                     }else{
                         res.sendStatus(401);
                     }
+                    
+                    // if (Users.isPassword(user.password, password)){
+                    //     const payload = { id: user.id};
+                    //     res.json({
+                    //         token: jwt.encode(payload, cfg.jwtSecret)
+                    //     });
+                    // }else{
+                    //     res.sendStatus(401);
+                    // }
                 })
                 .catch(error => res.sendStatus(401));
         }else{
