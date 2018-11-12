@@ -6,10 +6,13 @@ module.exports = app => {
     const cfg = app.libs.config; //Objeto de configuraçao 
     const params = {
         secretOrKey: cfg.jwtSecret,
-        jwtFromRequest: ExtractJwt.fromAuthHeader()
+        // jwtFromRequest: ExtractJwt.fromAuthHeader() 
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     };
     const strategy = new Strategy(params, (payload, done) => {
-        Users.findById(payload.id)
+        console.log(payload.id);
+        console.log(payload.user)
+        Users.findById(payload.user)
             .then(user => {
                 if(user){
                     return done(null, {

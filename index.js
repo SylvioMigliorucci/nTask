@@ -9,5 +9,6 @@ consign()
   .then("auth.js")
   .then("libs/middleware.js")
   .then("routes")
+  .then("pages")
   .then("libs/boot.js")
   .into(app);

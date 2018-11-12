@@ -10,6 +10,7 @@ import cors from "cors";
 module.exports = app =>{
     app.set("port", 3000);
     app.set("json spaces", 4);
+    app.set("view engine", "ejs");
     // app.use(morgan("common", {
     //     stream: {
     //         write: (message) => {
@@ -27,8 +28,8 @@ module.exports = app =>{
     // }));
     // app.use(helmet());
     // app.use(cors({
-        // origin: ["http://localhost/loja/"],
-        // origin: ["http://localhost:3001"],
+    //     // origin: ["http://localhost/loja/"],
+    //     // origin: ["http://localhost:3001"],
     //     origin: ["*"],
     //     methods: ["GET", "POST", "PUT", "DELETE"],
     //     allowedHeaders: ["Content-Type", "Authorization"]

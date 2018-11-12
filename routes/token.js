@@ -13,7 +13,8 @@ module.exports = app => {
                     if(bcrypt.compareSync(password,user.password)){
                         const payload = {user: user.id};
                         res.json({
-                            token: jwt.encode(payload, cfg.jwtSecret)
+                            token: jwt.encode(payload, cfg.jwtSecret),
+                            user_id: user.id
                         });
                     }else{
                         res.sendStatus(401);

@@ -4,7 +4,8 @@ module.exports = app =>{
     .all(app.auth.authenticate())  
     .get((req, res) => {
         //retorna todas as tarefas
-        Tasks.findAll({where: {user_id: req.user_id}})
+        // Tasks.findAll({where: {user_id: req.user_id}})
+        Tasks.findAll()
             .then(result => res.json(result))
             .catch(error => {
                 res.status(412).json({msg: error.message});
